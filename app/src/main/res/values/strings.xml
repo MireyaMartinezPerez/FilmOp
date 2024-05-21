@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FilmOp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="nombre_largo">nombre largo</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="ver_m_s_tarde">Ver más tarde</string>
+    <string name="inicio">Inicio</string>
+</resources>

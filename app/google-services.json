@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274605528303",
+    "project_id": "filmop-mireyamartinezperez",
+    "storage_bucket": "filmop-mireyamartinezperez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274605528303:android:36e80d30f8f581e696b71a",
+        "android_client_info": {
+          "package_name": "net.iessochoa.mireyamartinez.filmop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChZ-ca6R95J4sO9GCv-UqDlsBX-KkIf1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
