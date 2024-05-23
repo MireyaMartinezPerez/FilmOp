@@ -7,4 +7,10 @@
     <string name="favoritos">Favoritos</string>
     <string name="ver_m_s_tarde">Ver más tarde</string>
     <string name="inicio">Inicio</string>
+    <string name="plataformas">Plataformas</string>
+    <string name="genero">Genero</string>
+    <string name="titulo">Titulo</string>
+    <string name="duracion">Duracion</string>
+    <string name="pel_culas">Películas</string>
+    <string name="pelicula_detalle">Pelicula Detalle</string>
 </resources>

@@ -32,4 +32,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.action_peliculaDetalleFragment_to_navigation_home2)
+        if(!navController.navigateUp()){
+            super.onBackPressed()
+        }
+    }
 }

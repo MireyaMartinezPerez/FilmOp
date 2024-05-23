@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,6 +19,8 @@ import com.google.firebase.database.getValue
 import net.iessochoa.mireyamartinez.filmop.data.MovieData
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentHomeBinding
 import net.iessochoa.mireyamartinez.filmop.ui.utils.MovieAdapter
+
+
 
 class HomeFragment : Fragment(), MovieAdapter.MovieAdapterClickInterface {
 
@@ -94,6 +97,7 @@ class HomeFragment : Fragment(), MovieAdapter.MovieAdapterClickInterface {
     }
 
     override fun onClickedMoviePic(movieData: MovieData) {
-        TODO("Pinchamos y se abre el fragment que muestra la pelicula completa")
+        val action = HomeFragmentDirections.actionNavigationHomeToPeliculaDetalleFragment(movieData)
+        findNavController().navigate(action)
     }
 }
