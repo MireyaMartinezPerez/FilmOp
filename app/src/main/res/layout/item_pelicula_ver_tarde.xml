@@ -13,7 +13,7 @@
         android:id="@+id/clItem"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="#12B1B0">
+        android:background="#A9E4FF">
 
         <ImageView
             android:id="@+id/ivPortada"

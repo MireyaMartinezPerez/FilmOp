@@ -9,15 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BAF4F3">
+        android:background="#71D3FF">
 
         <TextView
             android:id="@+id/tvTituloPelicula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_width="365dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +28,7 @@
             android:id="@+id/ivPortadaPelicula"
             android:layout_width="288dp"
             android:layout_height="244dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,10 @@
             android:id="@+id/tvGeneroPelicula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="@+id/ivPortadaPelicula"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivPortadaPelicula"
             tools:text="@string/genero" />
 
@@ -48,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tvDuracionPelicula"
             app:layout_constraintTop_toBottomOf="@+id/tvDuracionPelicula"
             tools:text="@string/plataformas" />
@@ -57,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula"
             app:layout_constraintTop_toBottomOf="@+id/tvGeneroPelicula"
             tools:text="@string/duracion" />
@@ -66,12 +71,22 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            android:isIndicator="false"
+            android:isIndicator="true"
             android:numStars="5"
-            android:progressTint="#3F51B5"
+            android:progressTint="#00569C"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/tvPlataformas"
             app:layout_constraintTop_toBottomOf="@+id/tvPlataformas" />
+
+        <ImageView
+            android:id="@+id/imVerTarde"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@android:drawable/ic_lock_idle_alarm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
