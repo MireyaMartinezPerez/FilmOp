@@ -5,32 +5,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentFavoritosBinding
+import net.iessochoa.mireyamartinez.filmop.ui.utils.FavoritosAdapter
 
 class FavoritosFragment : Fragment() {
 
     private var _binding: FragmentFavoritosBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val favoritosViewModel: FavoritosViewModel by activityViewModels()
+    private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val favoritosViewModel =
-            ViewModelProvider(this).get(FavoritosViewModel::class.java)
-
+    ): View? {
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-
-        return root
+        return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.rvPrincipal.layoutManager = LinearLayoutManager(context)
+        binding.rvPrincipal.adapter = favoritosAdapter
 
+        favoritosViewModel.favoritos.observe(viewLifecycleOwner) { favoritos ->
+            favoritosAdapter.updateMovies(favoritos)
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

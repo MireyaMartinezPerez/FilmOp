@@ -11,8 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clItem"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="411dp"
+        android:layout_height="185dp"
         android:background="#A9E4FF">
 
         <ImageView
@@ -29,14 +29,18 @@
 
         <TextView
             android:id="@+id/tvTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="sans-serif-smallcaps"
+            android:layout_width="253dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="serif"
+            android:gravity="center"
             android:text="@string/nombre_largo"
+            android:textAlignment="viewStart"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivPortada"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +56,12 @@
         <RatingBar
             android:id="@+id/rbValoracion"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="#00569C"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/tvGenero"
             app:layout_constraintTop_toBottomOf="@+id/tvGenero" />
     </androidx.constraintlayout.widget.ConstraintLayout>
