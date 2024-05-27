@@ -76,7 +76,7 @@ class HomeFragment : Fragment(), MovieAdapter.MovieAdapterClickInterface {
                 for (movieSnapshot in snapshot.children) {
                     val peli = movieSnapshot.key?.let {
                         val movie = movieSnapshot.getValue(MovieData::class.java)
-                        MovieData(it, movie!!.name, movie.duration, movie.genre, movie.rating, movie.platforms)
+                        MovieData(it, movie!!.name, movie.duration, movie.genre, movie.rating, movie.platforms, movie.image)
                     }
                     if (peli != null) {
                         mList.add(peli)

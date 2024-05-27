@@ -3,6 +3,8 @@ package net.iessochoa.mireyamartinez.filmop.ui.utils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import net.iessochoa.mireyamartinez.filmop.R
 import net.iessochoa.mireyamartinez.filmop.data.MovieData
 import net.iessochoa.mireyamartinez.filmop.databinding.ItemPeliculaBinding
 
@@ -28,6 +30,12 @@ class MovieAdapter(private val movies: MutableList<MovieData>) : RecyclerView.Ad
             with(movies[position]) {
                 binding.tvTitulo.text = this.name
                 binding.tvGenero.text = this.genre
+                Glide.with(binding.cvItem.context)
+                    .load(this.image)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_home_black_24dp)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(binding.ivPortada)
                 binding.cvItem.setOnClickListener {
                     listener?.onClickedMoviePic(this)
                 }

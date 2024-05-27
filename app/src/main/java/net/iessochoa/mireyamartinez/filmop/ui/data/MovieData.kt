@@ -9,7 +9,8 @@ data class MovieData(
     val duration: String = "",
     val genre: String = "",
     val rating: Double = 0.0,
-    val platforms: List<String> = emptyList()
+    val platforms: List<String> = emptyList(),
+    val image: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
