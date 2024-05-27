@@ -14,12 +14,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentPeliculaDetalleBinding
 import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
+import net.iessochoa.mireyamartinez.filmop.ui.notifications.VerTardeViewModel
 
 class PeliculaDetalleFragment : Fragment() {
     private var _binding: FragmentPeliculaDetalleBinding? = null
     val args: PeliculaDetalleFragmentArgs by navArgs()
     private val binding get() = _binding!!
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
+    private val verTardeViewModel: VerTardeViewModel by activityViewModels()
 
     companion object {
         fun newInstance() = PeliculaDetalleFragment()
@@ -48,6 +50,12 @@ class PeliculaDetalleFragment : Fragment() {
             args.movieData?.let { movie ->
                 favoritosViewModel.addFavorito(movie)
                 Toast.makeText(context, "Se ha añadido a la lista de favoritos", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.imbVerTarde.setOnClickListener {
+            args.movieData?.let { movie ->
+                verTardeViewModel.addVerTarde(movie)
+                Toast.makeText(context, "Se ha añadido a la lista de ver más tarde", Toast.LENGTH_SHORT).show()
             }
         }
     }

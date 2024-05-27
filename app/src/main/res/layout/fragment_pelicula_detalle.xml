@@ -80,13 +80,27 @@
             app:layout_constraintStart_toStartOf="@+id/tvPlataformas"
             app:layout_constraintTop_toBottomOf="@+id/tvPlataformas" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/imbVerTarde"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#03A9F4"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/ic_lock_idle_alarm"
+            app:layout_constraintBottom_toBottomOf="@+id/imFavoritos"
+            app:layout_constraintEnd_toStartOf="@+id/imFavoritos" />
+
+        <ImageButton
             android:id="@+id/imFavoritos"
-            android:layout_width="47dp"
-            android:layout_height="45dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@android:drawable/star_big_off"
+            android:backgroundTint="#03A9F4"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/btn_star_big_off"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
