@@ -5,39 +5,39 @@
     android:id="@+id/cvItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="#A9E4FF"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clItem"
-        android:layout_width="411dp"
-        android:layout_height="201dp"
+        android:layout_width="392dp"
+        android:layout_height="206dp"
         android:background="#A9E4FF">
 
         <ImageView
             android:id="@+id/ivPortada"
-            android:layout_width="100dp"
-            android:layout_height="0dp"
+            android:layout_width="124dp"
+            android:layout_height="187dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvTitulo"
-            android:layout_width="253dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="259dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:text="@string/nombre_largo"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,8 +48,9 @@
             android:id="@+id/tvGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="@string/nombre_largo"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitulo"
             app:layout_constraintStart_toStartOf="@+id/tvTitulo"
             app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 
@@ -62,15 +63,18 @@
             android:numStars="5"
             android:progressTint="#00569C"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/tvGenero"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitulo"
+            app:layout_constraintStart_toStartOf="@+id/tvTitulo"
             app:layout_constraintTop_toBottomOf="@+id/tvGenero" />
 
         <ImageView
             android:id="@+id/iv_delete_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/rbValoracion"
-            app:layout_constraintTop_toBottomOf="@+id/rbValoracion"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_delete_circle_outline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

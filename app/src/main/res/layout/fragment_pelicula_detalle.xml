@@ -14,9 +14,8 @@
 
         <TextView
             android:id="@+id/tvTituloPelicula"
-            android:layout_width="362dp"
-            android:layout_height="119dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="368dp"
+            android:layout_height="57dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:textAlignment="center"
@@ -25,65 +24,62 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/titulo"
-            />
+            tools:text="@string/titulo" />
 
         <ImageView
             android:id="@+id/ivPortadaPelicula"
-            android:layout_width="288dp"
-            android:layout_height="244dp"
-            android:layout_marginTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvGeneroPelicula"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula"
-            tools:srcCompat="@tools:sample/avatars"
-            />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvGeneroPelicula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDuracionPelicula"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivPortadaPelicula"
-            tools:text="@string/genero"
-            />
+            tools:text="@string/genero" />
 
         <TextView
             android:id="@+id/tvPlataformas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/rbValoracionPelicula"
             app:layout_constraintStart_toStartOf="@+id/tvDuracionPelicula"
-            app:layout_constraintTop_toBottomOf="@+id/tvDuracionPelicula"
-            tools:text="@string/plataformas"
-            />
+            tools:text="@string/plataformas" />
+
         <TextView
             android:id="@+id/tvDuracionPelicula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvPlataformas"
             app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula"
-            app:layout_constraintTop_toBottomOf="@+id/tvGeneroPelicula"
-            tools:text="@string/duracion"
-            />
+            tools:text="@string/duracion" />
+
         <RatingBar
             android:id="@+id/rbValoracionPelicula"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="#00569C"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/tvPlataformas"
-            app:layout_constraintTop_toBottomOf="@+id/tvPlataformas"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvPlataformas" />
 
         <ImageButton
             android:id="@+id/imbVerTarde"
@@ -92,10 +88,9 @@
             android:backgroundTint="#03A9F4"
             android:padding="8dp"
             android:scaleType="fitXY"
-            android:src="@android:drawable/ic_lock_idle_alarm"
+            android:src="@drawable/ic_clock"
             app:layout_constraintBottom_toBottomOf="@+id/imFavoritos"
-            app:layout_constraintEnd_toStartOf="@+id/imFavoritos"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/imFavoritos" />
 
         <ImageButton
             android:id="@+id/imFavoritos"
@@ -106,10 +101,9 @@
             android:backgroundTint="#03A9F4"
             android:padding="8dp"
             android:scaleType="fitXY"
-            android:src="@android:drawable/btn_star_big_off"
+            android:src="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
