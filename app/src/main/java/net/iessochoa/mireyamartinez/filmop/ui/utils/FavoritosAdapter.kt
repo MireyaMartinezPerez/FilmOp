@@ -3,21 +3,34 @@ package net.iessochoa.mireyamartinez.filmop.ui.utils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import net.iessochoa.mireyamartinez.filmop.R
 import net.iessochoa.mireyamartinez.filmop.data.MovieData
 import net.iessochoa.mireyamartinez.filmop.databinding.ItemPeliculaBinding
 import net.iessochoa.mireyamartinez.filmop.databinding.ItemPeliculaFavoritosBinding
+import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
 
-class FavoritosAdapter(private var movies: MutableList<MovieData>) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
-    private var listener: MovieAdapterClickInterface? = null
+class FavoritosAdapter(private var movies: MutableList<MovieData>,
+                       private val viewModel: FavoritosViewModel
+) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+    private lateinit var storageRef: StorageReference
+    private val DATABASE = "favorites"
+    private val dataseRef = FirebaseDatabase.getInstance().reference
+        .child(DATABASE)
 
-    fun setListener(listener: MovieAdapterClickInterface) {
-        this.listener = listener
-    }
-
-    class FavoritosViewHolder(val binding: ItemPeliculaFavoritosBinding) : RecyclerView.ViewHolder(binding.root)
+    class FavoritosViewHolder(val binding: ItemPeliculaFavoritosBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritosViewHolder {
-        val binding = ItemPeliculaFavoritosBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemPeliculaFavoritosBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        storageRef = FirebaseStorage.getInstance().getReference()
         return FavoritosViewHolder(binding)
     }
 
@@ -31,18 +44,47 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>) : RecyclerVie
                 binding.tvTitulo.text = this.name
                 binding.tvGenero.text = this.genre
                 binding.rbValoracion.rating = ((this.rating.toFloat()) * 5) / 10
-                binding.cvItem.setOnClickListener {
-                    listener?.onClickedMoviePic(this)
+                val imageRef = storageRef.child("image").child(this.image)
+                Glide.with(binding.cvItem.context)
+                    .load(imageRef)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(binding.ivPortada)
+
+                binding.ivDeleteFavorite.setOnClickListener {
+                    viewModel.removeFavorito(this)
                 }
             }
         }
     }
+
     fun updateMovies(newMovies: List<MovieData>) {
         movies = newMovies.toMutableList()
-        notifyDataSetChanged()
-    }
+        dataseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                movies.clear()
+                for (movieSnapshot in snapshot.children) {
+                    val peli = movieSnapshot.key?.let {
+                        val movie = movieSnapshot.getValue(MovieData::class.java)
+                        MovieData(
+                            it,
+                            movie!!.name,
+                            movie.duration,
+                            movie.genre,
+                            movie.rating,
+                            movie.platforms,
+                            movie.image
+                        )
+                    }
+                    if (peli != null) {
+                        movies.add(peli)
+                    }
+                }
+                notifyDataSetChanged()
+            }
 
-    interface MovieAdapterClickInterface {
-        fun onClickedMoviePic(movieData: MovieData)
+            override fun onCancelled(error: DatabaseError) {
+                //Toast.makeText(, "Error al cargar la lista de favoritos", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

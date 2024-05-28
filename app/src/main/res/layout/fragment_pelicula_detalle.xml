@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame_detalle_pelicula"
     tools:context=".ui.pelicula_detalle.PeliculaDetalleFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/titulo" />
+            tools:text="@string/titulo"
+            />
 
         <ImageView
             android:id="@+id/ivPortadaPelicula"
@@ -35,7 +37,8 @@
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            />
 
         <TextView
             android:id="@+id/tvGeneroPelicula"
@@ -46,7 +49,8 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivPortadaPelicula"
-            tools:text="@string/genero" />
+            tools:text="@string/genero"
+            />
 
         <TextView
             android:id="@+id/tvPlataformas"
@@ -56,8 +60,8 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tvDuracionPelicula"
             app:layout_constraintTop_toBottomOf="@+id/tvDuracionPelicula"
-            tools:text="@string/plataformas" />
-
+            tools:text="@string/plataformas"
+            />
         <TextView
             android:id="@+id/tvDuracionPelicula"
             android:layout_width="wrap_content"
@@ -66,8 +70,8 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula"
             app:layout_constraintTop_toBottomOf="@+id/tvGeneroPelicula"
-            tools:text="@string/duracion" />
-
+            tools:text="@string/duracion"
+            />
         <RatingBar
             android:id="@+id/rbValoracionPelicula"
             android:layout_width="wrap_content"
@@ -78,7 +82,8 @@
             android:progressTint="#00569C"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/tvPlataformas"
-            app:layout_constraintTop_toBottomOf="@+id/tvPlataformas" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPlataformas"
+            />
 
         <ImageButton
             android:id="@+id/imbVerTarde"
@@ -89,7 +94,8 @@
             android:scaleType="fitXY"
             android:src="@android:drawable/ic_lock_idle_alarm"
             app:layout_constraintBottom_toBottomOf="@+id/imFavoritos"
-            app:layout_constraintEnd_toStartOf="@+id/imFavoritos" />
+            app:layout_constraintEnd_toStartOf="@+id/imFavoritos"
+            />
 
         <ImageButton
             android:id="@+id/imFavoritos"
@@ -102,7 +108,8 @@
             android:scaleType="fitXY"
             android:src="@android:drawable/btn_star_big_off"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

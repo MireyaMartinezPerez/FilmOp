@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,8 @@ class FavoritosFragment : Fragment() {
     private var _binding: FragmentFavoritosBinding? = null
     private val binding get() = _binding!!
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
-    private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf()) }
+    //private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf()) }
+    private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf(), favoritosViewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +25,7 @@ class FavoritosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

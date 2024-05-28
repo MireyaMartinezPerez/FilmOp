@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clItem"
         android:layout_width="411dp"
-        android:layout_height="185dp"
+        android:layout_height="201dp"
         android:background="#A9E4FF">
 
         <ImageView
@@ -64,5 +64,14 @@
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/tvGenero"
             app:layout_constraintTop_toBottomOf="@+id/tvGenero" />
+
+        <ImageView
+            android:id="@+id/iv_delete_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/rbValoracion"
+            app:layout_constraintTop_toBottomOf="@+id/rbValoracion"
+            app:srcCompat="@drawable/ic_delete_circle_outline" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

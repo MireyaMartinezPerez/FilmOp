@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import net.iessochoa.mireyamartinez.filmop.R
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentPeliculaDetalleBinding
 import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
 import net.iessochoa.mireyamartinez.filmop.ui.notifications.VerTardeViewModel
@@ -22,6 +26,7 @@ class PeliculaDetalleFragment : Fragment() {
     private val binding get() = _binding!!
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
     private val verTardeViewModel: VerTardeViewModel by activityViewModels()
+    private lateinit var storageRef: StorageReference
 
     companion object {
         fun newInstance() = PeliculaDetalleFragment()
@@ -41,8 +46,10 @@ class PeliculaDetalleFragment : Fragment() {
         _binding = FragmentPeliculaDetalleBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setHasOptionsMenu(true)
+        storageRef = FirebaseStorage.getInstance().getReference()
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         iniciar()
@@ -58,6 +65,7 @@ class PeliculaDetalleFragment : Fragment() {
                 Toast.makeText(context, "Se ha añadido a la lista de ver más tarde", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -73,8 +81,11 @@ class PeliculaDetalleFragment : Fragment() {
         binding.tvDuracionPelicula.setText(args.movieData?.duration)
         binding.tvPlataformas.text=(args.movieData?.platforms.toString())
         binding.rbValoracionPelicula.rating = ((args.movieData.rating.toFloat())*5)/10
-        //cargaImagen(binding.personajeImage, args.personaje!!.image)
-
+        val imageRef = storageRef.child("image").child(args.movieData.image)
+        Glide.with(binding.frameDetallePelicula.context)
+            .load(imageRef)
+            .error(R.drawable.ic_launcher_background)
+            .into(binding.ivPortadaPelicula)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
