@@ -18,7 +18,7 @@ class VerTardeFragment : Fragment() {
     private var _binding: FragmentVerTardeBinding? = null
     private val binding get() = _binding!!
     private val verTardeViewModel: VerTardeViewModel by activityViewModels()
-    private val verTardeAdapter by lazy { VerTardeAdapter(mutableListOf()) }
+    private val verTardeAdapter by lazy { VerTardeAdapter(mutableListOf(),verTardeViewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
