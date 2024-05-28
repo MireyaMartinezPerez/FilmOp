@@ -14,8 +14,8 @@
 
         <TextView
             android:id="@+id/tvTituloPelicula"
-            android:layout_width="368dp"
-            android:layout_height="57dp"
+            android:layout_width="385dp"
+            android:layout_height="73dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:textAlignment="center"
@@ -30,8 +30,7 @@
             android:id="@+id/ivPortadaPelicula"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="6dp"
-            app:layout_constraintBottom_toTopOf="@+id/tvGeneroPelicula"
+            app:layout_constraintBottom_toTopOf="@+id/rbValoracionPelicula"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tvDuracionPelicula"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +52,9 @@
             android:id="@+id/tvPlataformas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/rbValoracionPelicula"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvDuracionPelicula"
             tools:text="@string/plataformas" />
 
@@ -63,7 +62,7 @@
             android:id="@+id/tvDuracionPelicula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tvPlataformas"
             app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula"
@@ -73,13 +72,12 @@
             android:id="@+id/rbValoracionPelicula"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="#00569C"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvPlataformas" />
+            app:layout_constraintBottom_toTopOf="@+id/tvGeneroPelicula"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula" />
 
         <ImageButton
             android:id="@+id/imbVerTarde"
@@ -91,6 +89,17 @@
             android:src="@drawable/ic_clock"
             app:layout_constraintBottom_toBottomOf="@+id/imFavoritos"
             app:layout_constraintEnd_toStartOf="@+id/imFavoritos" />
+
+        <ImageButton
+            android:id="@+id/imbEditar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#D9DBDC"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_pen"
+            app:layout_constraintStart_toEndOf="@+id/rbValoracionPelicula"
+            app:layout_constraintTop_toTopOf="@+id/rbValoracionPelicula" />
 
         <ImageButton
             android:id="@+id/imFavoritos"

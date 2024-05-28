@@ -27,6 +27,7 @@ class PeliculaDetalleFragment : Fragment() {
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
     private val verTardeViewModel: VerTardeViewModel by activityViewModels()
     private lateinit var storageRef: StorageReference
+    private var isEditMode: Boolean = false
 
     companion object {
         fun newInstance() = PeliculaDetalleFragment()
@@ -63,6 +64,26 @@ class PeliculaDetalleFragment : Fragment() {
             args.movieData?.let { movie ->
                 verTardeViewModel.addVerTarde(movie)
                 Toast.makeText(context, "Se ha añadido a la lista de ver más tarde", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.imbEditar.setOnClickListener{
+            // Cambiar el estado de edición
+
+            isEditMode = !isEditMode
+
+            val newIcon = if (isEditMode) R.drawable.ic_save else R.drawable.ic_pen
+            binding.imbEditar.setImageResource(newIcon)
+
+            // Cambiar el estado de edición del rating bar
+            binding.rbValoracionPelicula.setIsIndicator(!isEditMode)
+
+            // Si se está guardando, actualizar la película en la base de datos
+            if (!isEditMode) {
+                args.movieData?.let { movie ->
+                    movie.rating = (binding.rbValoracionPelicula.rating.toDouble()*10)/5
+                    viewModel.updateMovieRating(movie)
+                    Toast.makeText(context, "Película guardada", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

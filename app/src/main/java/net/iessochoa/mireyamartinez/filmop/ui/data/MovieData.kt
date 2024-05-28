@@ -8,7 +8,7 @@ data class MovieData(
     val name: String = "",
     val duration: String = "",
     val genre: String = "",
-    val rating: Double = 0.0,
+    var rating: Double = 0.0,
     val platforms: List<String> = emptyList(),
     val image: String = ""
 ): Parcelable {
