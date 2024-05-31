@@ -21,10 +21,19 @@ class FavoritosFragment : Fragment() {
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
 
     private val favoritosAdapter by lazy {
-        FavoritosAdapter(mutableListOf(), favoritosViewModel) { movie ->
-            favoritosViewModel.removeFavorito(movie)
-            Toast.makeText(context, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
-        }
+        FavoritosAdapter(
+            mutableListOf(),
+            favoritosViewModel,
+            // OnClickListener para eliminar una película de favoritos
+            { movie ->
+                favoritosViewModel.removeFavorito(movie)
+                Toast.makeText(view?.context, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
+            },
+            // OnClickListener para ir a la pantalla de valoraciones
+            { movie ->
+                navigateToValoracion(movie)
+            }
+        )
     }
 
 
@@ -39,16 +48,26 @@ class FavoritosFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.rvPrincipal.layoutManager = LinearLayoutManager(context)
+        // Establecer el adaptador en el RecyclerView
         binding.rvPrincipal.adapter = favoritosAdapter
 
+        // Observar cambios en la lista de favoritos
         favoritosViewModel.favoritos.observe(viewLifecycleOwner) { favoritos ->
+            // Actualizar el adaptador con la nueva lista de películas favoritas
             favoritosAdapter.updateMovies(favoritos)
         }
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun navigateToValoracion(movie: MovieData) {
+        val action = FavoritosFragmentDirections.actionNavigationFavoritosToValoracionFragment(movie)
+        findNavController().navigate(action)
     }
 
 }

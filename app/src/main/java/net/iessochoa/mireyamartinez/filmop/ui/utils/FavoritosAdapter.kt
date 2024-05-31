@@ -20,8 +20,9 @@ import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
 
 class FavoritosAdapter(private var movies: MutableList<MovieData>,
                        private val viewModel: FavoritosViewModel,
-                       private val onDeleteItemClicked: (MovieData) -> Unit
-) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+                       private val onDeleteItemClicked: (MovieData) -> Unit,
+                       private val onItemClick: (MovieData) -> Unit
+    ) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
 
     private lateinit var storageRef: StorageReference
 
@@ -60,6 +61,9 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
                 binding.ivDeleteFavorite.setOnClickListener {
                     onDeleteItemClicked(this)
                 }
+                binding.root.setOnClickListener {
+                    onItemClick(this)
+                }
             }
         }
     }
@@ -88,6 +92,7 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
                     if (peli != null) {
                         movies.add(peli)
                     }
+
                 }
                 notifyDataSetChanged()
             }
