@@ -18,16 +18,15 @@ import com.google.firebase.storage.StorageReference
 import net.iessochoa.mireyamartinez.filmop.R
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentPeliculaDetalleBinding
 import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
+import net.iessochoa.mireyamartinez.filmop.ui.home.HomeFragmentDirections
 import net.iessochoa.mireyamartinez.filmop.ui.notifications.VerTardeViewModel
 
 class PeliculaDetalleFragment : Fragment() {
     private var _binding: FragmentPeliculaDetalleBinding? = null
     val args: PeliculaDetalleFragmentArgs by navArgs()
     private val binding get() = _binding!!
-    private val favoritosViewModel: FavoritosViewModel by activityViewModels()
     private val verTardeViewModel: VerTardeViewModel by activityViewModels()
     private lateinit var storageRef: StorageReference
-    private var isEditMode: Boolean = false
 
     companion object {
         fun newInstance() = PeliculaDetalleFragment()
@@ -54,11 +53,10 @@ class PeliculaDetalleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         iniciar()
-        binding.imFavoritos.setOnClickListener {
-            args.movieData?.let { movie ->
-                favoritosViewModel.addFavorito(movie)
-                Toast.makeText(context, "Se ha añadido a la lista de favoritos", Toast.LENGTH_SHORT).show()
-            }
+
+        binding.imbValoracion.setOnClickListener {
+            val action = PeliculaDetalleFragmentDirections.actionPeliculaDetalleFragmentToValoracionFragment(args.movieData)
+            findNavController().navigate(action)
         }
         binding.imbVerTarde.setOnClickListener {
             args.movieData?.let { movie ->
@@ -66,6 +64,7 @@ class PeliculaDetalleFragment : Fragment() {
                 Toast.makeText(context, "Se ha añadido a la lista de ver más tarde", Toast.LENGTH_SHORT).show()
             }
         }
+/*
         binding.imbEditar.setOnClickListener{
             // Cambiar el estado de edición
 
@@ -85,7 +84,7 @@ class PeliculaDetalleFragment : Fragment() {
                     Toast.makeText(context, "Película guardada", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
 
     }
     override fun onDestroyView() {
@@ -100,8 +99,9 @@ class PeliculaDetalleFragment : Fragment() {
         binding.tvTituloPelicula.setText(args.movieData?.name)
         binding.tvGeneroPelicula.setText(args.movieData?.genre)
         binding.tvDuracionPelicula.setText(args.movieData?.duration)
+        binding.tvSinopsis.setText(args.movieData?.synopsis)
         binding.tvPlataformas.text=(args.movieData?.platforms.toString())
-        binding.rbValoracionPelicula.rating = ((args.movieData.rating.toFloat())*5)/10
+        //binding.rbValoracionPelicula.rating = ((args.movieData.rating.toFloat())*5)/10
         val imageRef = storageRef.child("image").child(args.movieData.image)
         Glide.with(binding.frameDetallePelicula.context)
             .load(imageRef)

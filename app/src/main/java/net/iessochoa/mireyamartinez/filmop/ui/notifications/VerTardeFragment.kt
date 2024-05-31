@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +19,11 @@ class VerTardeFragment : Fragment() {
     private var _binding: FragmentVerTardeBinding? = null
     private val binding get() = _binding!!
     private val verTardeViewModel: VerTardeViewModel by activityViewModels()
-    private val verTardeAdapter by lazy { VerTardeAdapter(mutableListOf(),verTardeViewModel) }
+    private val verTardeAdapter by lazy { VerTardeAdapter(mutableListOf(),verTardeViewModel)
+    { movie ->
+        verTardeViewModel.removeVerTarde(movie)
+        Toast.makeText(context, "Película eliminada de ver más tarde", Toast.LENGTH_SHORT).show()
+    }}
 
     override fun onCreateView(
         inflater: LayoutInflater,

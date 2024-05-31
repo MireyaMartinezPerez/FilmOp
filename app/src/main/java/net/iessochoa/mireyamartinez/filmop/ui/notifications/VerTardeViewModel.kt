@@ -1,6 +1,5 @@
 package net.iessochoa.mireyamartinez.filmop.ui.notifications
 
-import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +14,7 @@ class VerTardeViewModel : ViewModel() {
 
     private val _verTarde = MutableLiveData<MutableList<MovieData>>(mutableListOf())
     val verTarde: LiveData<MutableList<MovieData>> get() = _verTarde
+
     private val DATABASE = "see_late"
     private val dataseRef = FirebaseDatabase.getInstance().reference
         .child(DATABASE)
@@ -38,7 +38,7 @@ class VerTardeViewModel : ViewModel() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Manejar errores si es necesario
+                Log.e("VerTardeViewModel", "Error cargando ver más tarde", error.toException())
             }
         })
     }
@@ -52,19 +52,17 @@ class VerTardeViewModel : ViewModel() {
         }
     }
     fun removeVerTarde(movie: MovieData) {
-        val favList = _verTarde.value ?: mutableListOf()
-        if (favList.contains(movie)) {
-            favList.remove(movie)
+        val verTardeList = _verTarde.value ?: mutableListOf()
+        if (verTardeList.contains(movie)) {
             val movieRef = dataseRef.child(movie.movieId.toString())
-            // Eliminar la película de Firebase
+            Log.d("VerTardeViewModel", "Eliminando película: ${movie.name}") // Añadido
             movieRef.removeValue().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Actualizar LiveData solo si la eliminación es exitosa
-                    _verTarde.value = favList
+                    verTardeList.remove(movie)
+                    _verTarde.value = verTardeList
+                    Log.d("VerTardeViewModel", "Película eliminada: ${movie.name}") // Añadido
                 } else {
-                    // Manejar el error si la eliminación falla
-                    Log.e(ContentValues.TAG, "Error al eliminar la película de Firebase: ${task.exception}")
-                    // Otras acciones que puedas necesitar, como mostrar un mensaje al usuario
+                    Log.e("VerTardeViewModel", "Error deleting movie from Firebase", task.exception)
                 }
             }
         }

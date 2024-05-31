@@ -39,7 +39,7 @@ class FavoritosViewModel : ViewModel() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Manejar errores si es necesario
+                Log.e("FavoritosViewModel", "Error cargando favoritos", error.toException())
             }
         })
     }
@@ -55,20 +55,19 @@ class FavoritosViewModel : ViewModel() {
     fun removeFavorito(movie: MovieData) {
         val favList = _favoritos.value ?: mutableListOf()
         if (favList.contains(movie)) {
-            favList.remove(movie)
             val movieRef = dataseRef.child(movie.movieId.toString())
-            // Eliminar la película de Firebase
+            Log.d("FavoritosViewModel", "Eliminando película: ${movie.name}") // Añadido
             movieRef.removeValue().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Actualizar LiveData solo si la eliminación es exitosa
+                    favList.remove(movie)
                     _favoritos.value = favList
+                    Log.d("FavoritosViewModel", "Película eliminada: ${movie.name}") // Añadido
                 } else {
-                    // Manejar el error si la eliminación falla
-                    Log.e(TAG, "Error al eliminar la película de Firebase: ${task.exception}")
-                    // Otras acciones que puedas necesitar, como mostrar un mensaje al usuario
+                    Log.e("FavoritosViewModel", "Error deleting movie from Firebase", task.exception)
                 }
             }
         }
     }
+
 
 }

@@ -16,8 +16,14 @@ class FavoritosFragment : Fragment() {
     private var _binding: FragmentFavoritosBinding? = null
     private val binding get() = _binding!!
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
-    //private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf()) }
-    private val favoritosAdapter by lazy { FavoritosAdapter(mutableListOf(), favoritosViewModel) }
+    
+    private val favoritosAdapter by lazy {
+        FavoritosAdapter(mutableListOf(), favoritosViewModel) { movie ->
+            favoritosViewModel.removeFavorito(movie)
+            Toast.makeText(context, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

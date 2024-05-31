@@ -1,5 +1,6 @@
 package net.iessochoa.mireyamartinez.filmop.ui.utils
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +19,12 @@ import net.iessochoa.mireyamartinez.filmop.databinding.ItemPeliculaVerTardeBindi
 import net.iessochoa.mireyamartinez.filmop.ui.notifications.VerTardeViewModel
 
 class VerTardeAdapter(private var movies: MutableList<MovieData>,
-                        private val viewModel: VerTardeViewModel
+                        private val viewModel: VerTardeViewModel,
+                      private val onDeleteItemClicked: (MovieData) -> Unit
 ) : RecyclerView.Adapter<VerTardeAdapter.VerTardeViewHolder>() {
+
     private lateinit var storageRef: StorageReference
+
     private val DATABASE = "see_late"
     private val dataseRef = FirebaseDatabase.getInstance().reference
         .child(DATABASE)
@@ -44,6 +48,7 @@ class VerTardeAdapter(private var movies: MutableList<MovieData>,
             with(movies[position]) {
                 binding.tvTitulo.text = this.name
                 binding.tvGenero.text = this.genre
+                binding.tvDuracion.text = this.duration
                 binding.tvPlataforma.text = this.platforms.toString()
                 val imageRef = storageRef.child("image").child(this.image)
                 Glide.with(binding.cvItem.context)
@@ -52,14 +57,12 @@ class VerTardeAdapter(private var movies: MutableList<MovieData>,
                     .into(binding.ivPortada)
 
                 binding.ivRemoveVerTarde.setOnClickListener {
-                    viewModel.removeVerTarde(this)
+                    onDeleteItemClicked(this)
                 }
             }
         }
     }
     fun updateMovies(newMovies: List<MovieData>) {
-        //movies = newMovies.toMutableList()
-        //notifyDataSetChanged()
         movies = newMovies.toMutableList()
         dataseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -74,7 +77,9 @@ class VerTardeAdapter(private var movies: MutableList<MovieData>,
                             movie.genre,
                             movie.rating,
                             movie.platforms,
-                            movie.image
+                            movie.image,
+                            movie.synopsis,
+                            movie.opinion
                         )
                     }
                     if (peli != null) {

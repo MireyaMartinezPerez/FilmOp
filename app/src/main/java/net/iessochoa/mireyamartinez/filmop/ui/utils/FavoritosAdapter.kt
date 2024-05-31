@@ -1,7 +1,9 @@
 package net.iessochoa.mireyamartinez.filmop.ui.utils
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
@@ -17,12 +19,17 @@ import net.iessochoa.mireyamartinez.filmop.databinding.ItemPeliculaFavoritosBind
 import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
 
 class FavoritosAdapter(private var movies: MutableList<MovieData>,
-                       private val viewModel: FavoritosViewModel
+                       private val viewModel: FavoritosViewModel,
+                       private val onDeleteItemClicked: (MovieData) -> Unit
 ) : RecyclerView.Adapter<FavoritosAdapter.FavoritosViewHolder>() {
+
     private lateinit var storageRef: StorageReference
+
     private val DATABASE = "favorites"
     private val dataseRef = FirebaseDatabase.getInstance().reference
         .child(DATABASE)
+
+
 
     class FavoritosViewHolder(val binding: ItemPeliculaFavoritosBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -42,8 +49,8 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
         with(holder) {
             with(movies[position]) {
                 binding.tvTitulo.text = this.name
-                binding.tvGenero.text = this.genre
-                binding.rbValoracion.rating = ((this.rating.toFloat()) * 5) / 10
+                binding.tvOpinion.text = this.opinion
+                binding.rbValoracion.rating = this.rating.toFloat()
                 val imageRef = storageRef.child("image").child(this.image)
                 Glide.with(binding.cvItem.context)
                     .load(imageRef)
@@ -51,11 +58,12 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
                     .into(binding.ivPortada)
 
                 binding.ivDeleteFavorite.setOnClickListener {
-                    viewModel.removeFavorito(this)
+                    onDeleteItemClicked(this)
                 }
             }
         }
     }
+
 
     fun updateMovies(newMovies: List<MovieData>) {
         movies = newMovies.toMutableList()
@@ -72,7 +80,9 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
                             movie.genre,
                             movie.rating,
                             movie.platforms,
-                            movie.image
+                            movie.image,
+                            movie.synopsis,
+                            movie.opinion
                         )
                     }
                     if (peli != null) {
@@ -83,8 +93,10 @@ class FavoritosAdapter(private var movies: MutableList<MovieData>,
             }
 
             override fun onCancelled(error: DatabaseError) {
-                //Toast.makeText(, "Error al cargar la lista de favoritos", Toast.LENGTH_SHORT).show()
+               // Toast.makeText("Error al cargar la lista de favoritos", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
+
 }

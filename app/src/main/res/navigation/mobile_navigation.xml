@@ -37,5 +37,21 @@
         <action
             android:id="@+id/action_peliculaDetalleFragment_to_navigation_home2"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_peliculaDetalleFragment_to_valoracionFragment"
+            app:destination="@id/valoracionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/valoracionFragment"
+        android:name="net.iessochoa.mireyamartinez.filmop.ui.valoracion.ValoracionFragment"
+        android:label="fragment_valoracion"
+        tools:layout="@layout/fragment_valoracion" >
+        <argument
+            android:name="movieData"
+            app:argType="net.iessochoa.mireyamartinez.filmop.data.MovieData"/>
+        <action
+            android:id="@+id/action_valoracionFragment_to_peliculaDetalleFragment"
+            app:destination="@id/peliculaDetalleFragment" />
+    </fragment>
+
 </navigation>

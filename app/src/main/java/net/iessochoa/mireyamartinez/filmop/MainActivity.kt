@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // Configuración de los destinos principales de la navegación
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_favoritos, R.id.navigation_ver_tarde
@@ -31,12 +30,32 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
-    override fun onBackPressed() {
-        val navController = findNavController(R.id.action_peliculaDetalleFragment_to_navigation_home2)
-        if(!navController.navigateUp()){
-            super.onBackPressed()
+        // Añadido un listener para manejar la selección del botón "Home"
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    if (navController.currentDestination?.id != R.id.navigation_home) {
+                        // Navega a navigation_home sólo si no estás ya en navigation_home
+                        navController.navigate(R.id.navigation_home)
+                    }
+                    true
+                }
+                R.id.navigation_favoritos -> {
+                    if (navController.currentDestination?.id != R.id.navigation_favoritos) {
+                        navController.navigate(R.id.navigation_favoritos)
+                    }
+                    true
+                }
+                R.id.navigation_ver_tarde -> {
+                    if (navController.currentDestination?.id != R.id.navigation_ver_tarde) {
+                        navController.navigate(R.id.navigation_ver_tarde)
+                    }
+                    true
+                }
+                else -> false
+            }
         }
     }
+
 }

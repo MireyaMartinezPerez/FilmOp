@@ -2,15 +2,21 @@
     <!-- Base application theme. -->
     <style name="Theme.FilmOp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryVariant">#332D19</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">#FFC107</item>
+        <item name="colorSecondaryVariant">#AF8608</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="ColorItem">
+        <item name="android:background">#474541</item>
+    </style>
+    <style name="ColorFondo">
+        <item name="android:background">#FFC107</item>
     </style>
 </resources>

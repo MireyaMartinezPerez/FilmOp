@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#71D3FF">
+        style="@style/ColorItem">
 
         <TextView
             android:id="@+id/tvTituloPelicula"
@@ -28,9 +28,8 @@
 
         <ImageView
             android:id="@+id/ivPortadaPelicula"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/rbValoracionPelicula"
+            android:layout_width="317dp"
+            android:layout_height="364dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,77 +41,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvDuracionPelicula"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPlataformas"
             tools:text="@string/genero" />
+
+        <TextView
+            android:id="@+id/tvSinopsis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvPlataformas"
+            app:layout_constraintTop_toBottomOf="@+id/ivPortadaPelicula"
+            tools:text="@string/plataformas" />
 
         <TextView
             android:id="@+id/tvPlataformas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvDuracionPelicula"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSinopsis"
             tools:text="@string/plataformas" />
 
         <TextView
             android:id="@+id/tvDuracionPelicula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tvPlataformas"
             app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneroPelicula"
             tools:text="@string/duracion" />
 
-        <RatingBar
-            android:id="@+id/rbValoracionPelicula"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imbValoracion"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:progressTint="#00569C"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/tvGeneroPelicula"
-            app:layout_constraintStart_toStartOf="@+id/tvGeneroPelicula" />
-
-        <ImageButton
-            android:id="@+id/imbVerTarde"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#03A9F4"
-            android:padding="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_clock"
-            app:layout_constraintBottom_toBottomOf="@+id/imFavoritos"
-            app:layout_constraintEnd_toStartOf="@+id/imFavoritos" />
-
-        <ImageButton
-            android:id="@+id/imbEditar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#D9DBDC"
-            android:padding="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_pen"
-            app:layout_constraintStart_toEndOf="@+id/rbValoracionPelicula"
-            app:layout_constraintTop_toTopOf="@+id/rbValoracionPelicula" />
-
-        <ImageButton
-            android:id="@+id/imFavoritos"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#03A9F4"
-            android:padding="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_star"
+            android:clickable="true"
+            android:src="@android:drawable/btn_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imbVerTarde" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imbVerTarde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:src="@drawable/ic_clock"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

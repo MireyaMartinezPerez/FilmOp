@@ -10,7 +10,9 @@ data class MovieData(
     val genre: String = "",
     var rating: Double = 0.0,
     val platforms: List<String> = emptyList(),
-    val image: String = ""
+    val image: String = "",
+    val synopsis: String = "",
+    var opinion: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -18,8 +20,10 @@ data class MovieData(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readDouble(),
-        parcel.createStringArrayList()!!
-    )
+        parcel.createStringArrayList()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
+        )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(movieId)
@@ -28,6 +32,8 @@ data class MovieData(
         parcel.writeString(genre)
         parcel.writeDouble(rating)
         parcel.writeStringList(platforms)
+        parcel.writeString(synopsis)
+        parcel.writeString(opinion)
     }
 
     override fun describeContents(): Int = 0
