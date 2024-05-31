@@ -45,12 +45,24 @@ class FavoritosViewModel : ViewModel() {
     }
     fun addFavorito(movie: MovieData) {
         val favList = _favoritos.value ?: mutableListOf()
-        if (!favList.contains(movie)) {
+        // Verificar si la película ya está en la
+
+        val existingMovieIndex = favList.indexOfFirst { it.movieId == movie.movieId }
+        if (existingMovieIndex != -1) {
+            // Si la película ya existe, actualizarla en lugar de agregar una nueva entrada
+            favList[existingMovieIndex] = movie
+        } else {
+            // Si la película no está en la lista, agregarla
             favList.add(movie)
-            val movieRef = dataseRef.child(movie.movieId.toString())
-            movieRef.setValue(movie)
-            _favoritos.value = favList
         }
+
+        // Actualizar la lista de favoritos en Firebase
+        val movieRef = dataseRef.child(movie.movieId.toString())
+        movieRef.setValue(movie)
+
+        // Actualizar el LiveData con la lista de favoritos actualizada
+        _favoritos.value = favList
+
     }
     fun removeFavorito(movie: MovieData) {
         val favList = _favoritos.value ?: mutableListOf()

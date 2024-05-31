@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import net.iessochoa.mireyamartinez.filmop.data.MovieData
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentFavoritosBinding
+import net.iessochoa.mireyamartinez.filmop.ui.home.HomeFragmentDirections
 import net.iessochoa.mireyamartinez.filmop.ui.utils.FavoritosAdapter
 
 class FavoritosFragment : Fragment() {
@@ -16,7 +19,7 @@ class FavoritosFragment : Fragment() {
     private var _binding: FragmentFavoritosBinding? = null
     private val binding get() = _binding!!
     private val favoritosViewModel: FavoritosViewModel by activityViewModels()
-    
+
     private val favoritosAdapter by lazy {
         FavoritosAdapter(mutableListOf(), favoritosViewModel) { movie ->
             favoritosViewModel.removeFavorito(movie)
@@ -47,4 +50,5 @@ class FavoritosFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

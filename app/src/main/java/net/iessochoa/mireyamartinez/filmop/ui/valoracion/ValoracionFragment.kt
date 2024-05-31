@@ -16,9 +16,11 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import net.iessochoa.mireyamartinez.filmop.R
+import net.iessochoa.mireyamartinez.filmop.data.MovieData
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentPeliculaDetalleBinding
 import net.iessochoa.mireyamartinez.filmop.databinding.FragmentValoracionBinding
 import net.iessochoa.mireyamartinez.filmop.ui.favoritos.FavoritosViewModel
+import net.iessochoa.mireyamartinez.filmop.ui.home.HomeFragmentDirections
 import net.iessochoa.mireyamartinez.filmop.ui.pelicula_detalle.PeliculaDetalleFragmentArgs
 import net.iessochoa.mireyamartinez.filmop.ui.pelicula_detalle.PeliculaDetalleFragmentDirections
 
@@ -56,7 +58,6 @@ class ValoracionFragment : Fragment() {
         iniciar()
         binding.fabGuardar.setOnClickListener {
             args.movieData?.let { movie ->
-                favoritosViewModel.addFavorito(movie)
                 movie.rating = binding.rbValoracionPelicula.rating.toDouble()
                 movie.opinion = binding.ettvOpinion.text.toString()
                 viewModel.updateMovieRating(movie)
@@ -65,6 +66,7 @@ class ValoracionFragment : Fragment() {
                     "Se ha añadido a la lista de favoritos",
                     Toast.LENGTH_SHORT
                 ).show()
+                favoritosViewModel.addFavorito(movie)
             }
         }
     }
@@ -92,4 +94,5 @@ class ValoracionFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }
