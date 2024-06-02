@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/peliculaDetalleFragment"
         android:name="net.iessochoa.mireyamartinez.filmop.ui.pelicula_detalle.PeliculaDetalleFragment"
-        android:label="@string/pelicula_detalle"
+        android:label="@string/pel_cula_detalle"
         tools:layout="@layout/fragment_pelicula_detalle" >
         <argument
             android:name="movieData"
@@ -48,7 +48,7 @@
     <fragment
         android:id="@+id/valoracionFragment"
         android:name="net.iessochoa.mireyamartinez.filmop.ui.valoracion.ValoracionFragment"
-        android:label="fragment_valoracion"
+        android:label="@string/valoraci_n"
         tools:layout="@layout/fragment_valoracion" >
         <argument
             android:name="movieData"

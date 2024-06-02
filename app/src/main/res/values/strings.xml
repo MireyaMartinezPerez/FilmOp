@@ -13,4 +13,6 @@
     <string name="duracion">Duracion</string>
     <string name="pel_culas">Películas</string>
     <string name="pelicula_detalle">Pelicula Detalle</string>
+    <string name="valoraci_n">Valoración</string>
+    <string name="pel_cula_detalle">Película Detalle</string>
 </resources>
